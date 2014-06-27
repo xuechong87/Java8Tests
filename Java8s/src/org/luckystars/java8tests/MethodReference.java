@@ -13,10 +13,37 @@ import java.util.function.Supplier;
 public class MethodReference {
 
 	public static void main(String[] args) {
-		jdkMethodReference();
-		
+		jdkFunctionalInterface();
 	}
 	
+	
+	
+	/***
+	 * There are four kinds of method references:<br>
+	 * 共有四种方法引用
+	 * <br>
+	 * <br>
+
+	 *	<b>Reference to a static method :</b><br> 
+	 *	<b>引用静态方法 :</b><br> 
+	 *	<code>ContainingClass::staticMethodName</code><br><br>
+		
+	 *	<b>Reference to an instance method of a particular object:</b> <br>
+	 *	<b>引用特定对象的实例方法:</b> <br>
+	 *	<code>ContainingObject::instanceMethodName</code><br><br>
+		
+	 *	<b>Reference to an instance method of an arbitrary object of a particular type:</b><br> 
+	 *	<b>:</b><br> 
+	 *	<code>ContainingType::methodName </code><br><br>
+		
+	 *	<b>Reference to a constructor:</b><br>
+	 *	<code>ClassName::new</code><br><br>
+	 * 
+	 * 
+	 */
+	static void methodReference(){
+		
+	}
 	
 	/**
 	 * 在java8定义了几个标准函数引用类型 他们都是函数接口(@FunctionalInterface)<br>
@@ -26,7 +53,7 @@ public class MethodReference {
 	 * {@link java.util.function.Predicate} <br>
 	 * {@link java.util.function.Function} <br>
 	 */
-	static void jdkMethodReference(){
+	static void jdkFunctionalInterface(){
 		consumer();
 		supplier();
 		predicate();
@@ -86,12 +113,6 @@ public class MethodReference {
 		String result = toStr.apply(0xFF);
 		System.out.println("function says:" + result);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
