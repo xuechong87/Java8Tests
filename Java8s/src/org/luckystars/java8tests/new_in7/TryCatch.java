@@ -1,10 +1,12 @@
-package org.luckystars.java8tests;
+package org.luckystars.java8tests.new_in7;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.luckystars.java8tests.Util;
 
 /**
  * java 7中的try catch
