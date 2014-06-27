@@ -16,7 +16,7 @@ public class TryCatch {
 
 	public static void main(String[] args) throws MalformedURLException, IOException {
 		oldStyle();
-		newFeature();
+		autoClose();
 	}
 	
 	static void oldStyle() throws MalformedURLException, IOException{
@@ -37,7 +37,12 @@ public class TryCatch {
 		
 	}
 	
-	static void newFeature() throws MalformedURLException, IOException{
+	/**
+	 * auto close
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	static void autoClose() throws MalformedURLException, IOException{
 		URLConnection conn = new URL("https://www.google.com.hk").openConnection();
 		
 		try (InputStream in = conn.getInputStream();){//此处定义的对象必须实现 java.lang.AutoCloseable 接口
@@ -50,6 +55,23 @@ public class TryCatch {
 		}
 		
 	}
+	
+	/**
+	 * 多重catch
+	 * 可以在一个catch中处理多种异常
+	 */
+	static void multipleCatch(){
+		try {
+			ex();
+		} catch (NullPointerException | IllegalArgumentException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static void ex()throws IOException,NullPointerException,IllegalArgumentException
+	{}
+	
+	
 	
 	
 }
