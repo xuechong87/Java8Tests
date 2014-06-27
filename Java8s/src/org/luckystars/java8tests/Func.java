@@ -57,6 +57,7 @@ public class Func {
 interface Func1{
 	void dosomeThing();
 }
+
 /**
  * 带参数和返回值的
  * @author xuechong
@@ -66,10 +67,20 @@ interface FuncWithParam {
 	String dosomeThing(String a,String b);
 }
 
-//@FunctionalInterface这样是不行的
+
+@FunctionalInterface//这样是可以的
 interface MixInInterface{
+	abstract void dosomeThing();//只有一个抽象方法
 	default void mix(){
-		//有默认实现的接口也不可以成为函数接口
+		//有默认实现的接口可以成为函数接口
+	};
+}
+
+
+//@FunctionalInterface这样是不行的
+interface MixInInterface2{
+	default void mix(){
+		//只有一个默认实现的接口也不可以成为函数接口
 	};
 }
 
