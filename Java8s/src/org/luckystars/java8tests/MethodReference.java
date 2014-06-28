@@ -43,12 +43,11 @@ public class MethodReference {
 	 *	<b>Reference to a constructor:</b><br>
 	 *	<b>引用构造函数:</b><br>
 	 *	<code>ClassName::new</code><br><br>
-	 * 
 	 */
 	static void methodReference(){
 		//静态方法
-		Function<Integer, String> strjoin = String::valueOf;
-		System.out.println(strjoin.apply(0xffff));
+		Function<Integer, String> strValue = String::valueOf;
+		System.out.println(strValue.apply(0xffff));
 		
 		
 		
@@ -76,7 +75,7 @@ public class MethodReference {
 			});
 			System.out.println(list);
 		}
-		
+
 		
 	
 		//引用构造函数
@@ -85,6 +84,8 @@ public class MethodReference {
 		System.out.println(abc);
 		
 	}
+	
+	
 	
 	/**
 	 * 在java8定义了几个标准函数引用类型 他们都是函数接口(@FunctionalInterface)<br>
@@ -100,6 +101,7 @@ public class MethodReference {
 		predicate();
 		function();
 	}
+	
 	
 	/**
 	 * Consumer&lt;T&gt; <br>
@@ -122,6 +124,7 @@ public class MethodReference {
 		printStrConsumer.accept("printStrConsumer speaking");
 	}
 	
+	
 	/**
 	 * Supplier&lt;T&gt;<br>
 	 * T get(); 生产一个T类型对象
@@ -131,6 +134,7 @@ public class MethodReference {
 		long curTime = curTimeSupplier.get();
 		System.out.println("supplier says:" + curTime);
 	}
+
 	
 	/**
 	 * Predicate&lt;T&gt;<br>
