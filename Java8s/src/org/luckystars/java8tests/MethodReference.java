@@ -1,5 +1,9 @@
 package org.luckystars.java8tests;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -14,16 +18,15 @@ public class MethodReference {
 
 	public static void main(String[] args) {
 		jdkFunctionalInterface();
+		methodReference();
 	}
 	
 	
 	
 	/***
 	 * There are four kinds of method references:<br>
-	 * 共有四种方法引用
-	 * <br>
-	 * <br>
-
+	 * 共有四种方法引用<br><br>
+	 * 
 	 *	<b>Reference to a static method :</b><br> 
 	 *	<b>引用静态方法 :</b><br> 
 	 *	<code>ContainingClass::staticMethodName</code><br><br>
@@ -33,15 +36,53 @@ public class MethodReference {
 	 *	<code>ContainingObject::instanceMethodName</code><br><br>
 		
 	 *	<b>Reference to an instance method of an arbitrary object of a particular type:</b><br> 
+	 *	<b>引用一个特定类型的实例方法:</b><br> 
 	 *	<b>:</b><br> 
 	 *	<code>ContainingType::methodName </code><br><br>
 		
 	 *	<b>Reference to a constructor:</b><br>
+	 *	<b>引用构造函数:</b><br>
 	 *	<code>ClassName::new</code><br><br>
-	 * 
 	 * 
 	 */
 	static void methodReference(){
+		//静态方法
+		Function<Integer, String> strjoin = String::valueOf;
+		System.out.println(strjoin.apply(0xffff));
+		
+		
+		
+		//引用特定对象的实例方法
+		List<String> list = new ArrayList<>();
+		Predicate<String> listAdd = list::add;
+		listAdd.test("abc");
+		listAdd.test("123");
+		listAdd.test("xyz");
+		System.out.println(list);
+		
+		
+		
+		//引用一个特定类型的实例方法:
+		list.sort(String::compareTo);
+		System.out.println(list);
+		
+		//这段相当于
+		classic:{
+			Collections.sort(list,new Comparator<String>() {
+				@Override
+				public int compare(String o1, String o2) {
+					return o1.compareTo(o2);
+				}
+			});
+			System.out.println(list);
+		}
+		
+		
+	
+		//引用构造函数
+		Function<char[],String> strCons = String::new;
+		String abc = strCons.apply(new char[]{'a','b','c'});
+		System.out.println(abc);
 		
 	}
 	
@@ -69,14 +110,14 @@ public class MethodReference {
 		Consumer<String> printStrConsumer = System.out :: println;
 		
 		//lambda style
-		//Consumer<String> printStrConsumer1 = (str)->System.out.println(str);
+		Consumer<String> printStrConsumer1 = (str)->System.out.println(str);
 		
 		//classic style
-		//Consumer<String> printStrConsumer2 = new Consumer<String>() {@Override
-		//	public void accept(String t) {
-		//		System.out.println(t);
-		//	}	
-		//};
+		Consumer<String> printStrConsumer2 = new Consumer<String>() {@Override
+			public void accept(String t) {
+				System.out.println(t);
+			}	
+		};
 		
 		printStrConsumer.accept("printStrConsumer speaking");
 	}
