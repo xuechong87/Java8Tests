@@ -1,7 +1,10 @@
 package org.luckystars.java8tests;
 
 
-
+/**
+ * 函数式接口
+ * @author xuechong
+ */
 public class Func {
 	public static void main(String[] args) {
 		beforeJava8();
