@@ -20,9 +20,9 @@ public class LambdaVarScope {
 	            
 	            Consumer<Integer> myConsumer = (y) -> 
 	            {
-	                System.out.println("x = " + x); // Statement A
+	                System.out.println("x = " + x); // Statement A//result is 23
 	                System.out.println("y = " + y);
-	                System.out.println("this.x = " + this.x);
+	                System.out.println("this.x = " + this.x);//result is 1
 	                System.out.println("LambdaScopeTest.this.x = " +
 	                		LambdaVarScope.this.x);
 	            };
