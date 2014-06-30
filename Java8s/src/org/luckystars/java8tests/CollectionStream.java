@@ -25,9 +25,15 @@ import java.util.function.Predicate;
  * 
  * @author xuechong
  */
+@SuppressWarnings("serial")
 public class CollectionStream {
 	//for test
 	static List<Content> _list = null;
+	
+	static void println(Object o){
+		System.out.println(o);
+	}
+	
 	static {
 		_list = new ArrayList<Content>(){{
 			Predicate<Object[]> addCon = x->{
@@ -50,12 +56,26 @@ public class CollectionStream {
 		streamOp();
 	}
 	
+	
+	
 	static void streamOp(){
 		Content result = null;
 		Content theMax = _list.stream()
 		.filter(c->c.getNum()<10)
 		.reduce(result,(r,e)->{return r!=null && r.getNum()>e.getNum()?r:e;});
 		System.out.println(theMax.getName());
+	}
+	
+	static void streamReduce(){
+		Integer totalNum1 = _list.stream()
+				.map(Content::getNum).reduce(0, (c1,c2)->c1+c2);
+		
+		println(totalNum1);
+		
+		
+		Integer totalNum2 = _list.stream()
+				.mapToInt(Content::getNum).sum();
+		println(totalNum2);
 	}
 	
 	
