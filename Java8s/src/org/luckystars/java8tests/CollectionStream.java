@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 
 /**
@@ -54,6 +55,7 @@ public class CollectionStream {
 	
 	public static void main(String[] args) {
 		streamOp();
+		origin();
 	}
 	
 	
@@ -78,7 +80,34 @@ public class CollectionStream {
 		println(totalNum2);
 	}
 	
+	static void origin(){
+		Integer times = 1000000;
+		originLoop(times);		
+		streamLoop(times);
+	}
 	
+	static void originLoop(Integer times){
+		Supplier<Long> curTime = System::currentTimeMillis;
+		long c1 = curTime.get();
+		for (int i = 0; i < times; i++) {
+			for (Content content : _list) {
+				content.setNum(content.getNum());
+			}
+		}
+		
+		long c2 = curTime.get();
+		System.out.println("origin" + (c2-c1));
+	}
+	
+	static void streamLoop(Integer times){
+		Supplier<Long> curTime = System::currentTimeMillis;
+		long c3 = curTime.get();
+		for (int i = 0; i < times; i++) {
+			_list.parallelStream().forEach(content->content.setNum(content.getNum()));
+		}
+		long c4 = curTime.get();
+		System.out.println("stream" + (c4-c3));
+	}
 	
 	
 }
