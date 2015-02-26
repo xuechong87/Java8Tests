@@ -12,7 +12,7 @@ import org.openjdk.jmh.annotations.*;
 
 public class InvokeDynamicTests {
 	
-	
+	static InvokeDynamicTests _this = new InvokeDynamicTests();
 	
 	public static void main(String[] args)throws Throwable {
 //		reflect();
@@ -28,7 +28,9 @@ public class InvokeDynamicTests {
 		return System.currentTimeMillis();
 	}
 	
-	
+	public Long test2(){
+		return System.currentTimeMillis();
+	}
 	
 	
 	static Method method = null;
@@ -41,26 +43,62 @@ public class InvokeDynamicTests {
 			e.printStackTrace();
 		}
 	}
-	@Benchmark
 	public  void reflect() throws Throwable{
 		Long result = (Long) method.invoke(null);
 	}
 	
+	static Method method2 = null;
+	static {
+		try {
+			method2 = InvokeDynamicTests.class.getDeclaredMethod("test2");
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+	@Benchmark
+	public  void reflect2() throws Throwable{
+		Long result = (Long) method2.invoke(_this);
+	}
+	
+	
+	
 	static MethodHandles.Lookup lookup = MethodHandles.lookup();
 	static MethodType mType = MethodType.methodType(Long.class);
 	static MethodHandle mHandle = null;
-	static{try {
+	static{
+		try {
 		mHandle = lookup.findStatic(InvokeDynamicTests.class, "test", mType);
-	} catch (NoSuchMethodException e) {
-		e.printStackTrace();
-	} catch (IllegalAccessException e) {
-		e.printStackTrace();
-	}}
-	
-	@Benchmark
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
 	public  void dyn() throws Throwable {
 		Long result = (Long) mHandle.invoke();
 	}
+	
+	
+	
+	static MethodHandle mHandle2 =null;
+	static{
+		try {
+			mHandle2 = lookup.findVirtual(InvokeDynamicTests.class, "test2", mType).bindTo(_this);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+	@Benchmark
+	public  void dyn2() throws Throwable {
+		Long result = (Long) mHandle2.invoke();
+	}
+	
+	
+	
 	
 	
 	
