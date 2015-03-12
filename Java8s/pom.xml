@@ -13,6 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jmh.version>1.6.1</jmh.version>
+		<zxing.version>3.2.0</zxing.version>
 	</properties>
 
 	<dependencies>
@@ -42,6 +43,18 @@
 		    -->
 		    <scope>provided</scope> 
 		</dependency>
+		
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+				
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
