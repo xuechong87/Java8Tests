@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.OptionalLong;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BinaryOperator;
-import java.util.stream.BaseStream;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -16,7 +14,6 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.runner.RunnerException;
-import org.springframework.data.util.StreamUtils;
 
 public class AboutStream {
 	
@@ -36,6 +33,21 @@ public class AboutStream {
 //		processingOrder2();
 	}
 	
+	/**
+	 * 执行顺序为 : <br>
+	 * filter: d2 <br>
+	 * forEach: d2<br>
+	 * filter: a2<br>
+	 * forEach: a2<br>
+	 * filter: b1<br>
+	 * forEach: b1<br>
+	 * filter: b3<br>
+	 * forEach: b3<br>
+	 * filter: c<br>
+	 * forEach: c<br>
+	 * 
+	 * @author xc
+	 */
 	@Test
 	public  void processingOrder(){
 		Stream.of("d2", "a2", "b1", "b3", "c")
@@ -46,6 +58,10 @@ public class AboutStream {
 	    .forEach(s -> System.out.println("forEach: " + s));
 	}
 	
+	/**
+	 * 并行流会乱序执行
+	 * @author xc
+	 */
 	@Test
 	public void processingOrder2(){
 		IntStream.range(1, 50).parallel()
