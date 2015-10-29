@@ -1,11 +1,15 @@
 package org.luckystars.zxingtests;
-
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -70,6 +74,20 @@ public class QRCodeUtil {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		Random r = new Random(System.currentTimeMillis());
+		String logoPath = "c:/logo3.png";
+		BufferedImage image  = toBufferedImage("http://123.59.72.126:9999/activity/pdf/index.html");
+		Graphics2D gs = image.createGraphics();  
+//		gs.setColor(Color.BLUE); 
+        //载入logo  
+        Image logo = ImageIO.read(new File(logoPath));  
+        gs.dispose();  
+        gs.drawImage(logo, 100, 100, null);  
+        logo.flush();  
+        ImageIO.write(image, "png", new File("c:/logoqr.png"));
 	}
 	
 }
