@@ -5,17 +5,17 @@ Java7 8 新特性
 
 Java8 新特性
 
-*Repeating Annotations
+* Repeating Annotations
 
-*Parameter Reflection
+* Parameter Reflection
 
-*Type Annotation
+* Type Annotation
 
-*Default methods
+* Default methods
 
-*Method references
+* Method references
 
-*Lambda Expressions
+* Lambda Expressions
 
 
 相关文章
