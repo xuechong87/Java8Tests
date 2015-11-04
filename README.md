@@ -3,6 +3,21 @@ Java8Tests
 
 Java7 8 新特性
 
+Java8 新特性
+
+*Repeating Annotations
+
+*Parameter Reflection
+
+*Type Annotation
+
+*Default methods
+
+*Method references
+
+*Lambda Expressions
+
+
 相关文章
 
 [Oracle Java8 新特性](http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html)
