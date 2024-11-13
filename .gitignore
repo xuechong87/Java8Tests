@@ -1,7 +1,7 @@
 *.class
 build/
 # Package Files #
-
+.idea/
 *.war
 *.ear
 .classpath
@@ -21,3 +21,4 @@ sm2/src/resource/jdbc.properties
 #mq
 *.data
 *.redo
+.DS_Store

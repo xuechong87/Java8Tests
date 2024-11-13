@@ -16,12 +16,12 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.runner.RunnerException;
 
 public class AboutStream {
-	
-	static List<Integer> intList = 
+	static List<Integer> intList =
 			Stream.generate(()->(int)(Math.random()*100)).limit(100).collect(Collectors.toList());
 //	Stream.generate(()->(int)(Math.random()*100)).limit(10000000).collect(Collectors.toList());
 	
 	public static void main(String[] args) throws RunnerException {
+//		sun.nio.ch.FileChannelImpl;
 //		 Options opt = new OptionsBuilder()
 //         .include(AboutStream.class.getSimpleName())
 //         .warmupIterations(10)
